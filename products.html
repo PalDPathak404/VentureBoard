@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - VentureBoard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #fff;
+            display: block;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .currency-dropdown {
+            position: relative;
+        }
+
+        .currency-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .currency-btn::after {
+            content: ' ▼';
+            font-size: 10px;
+        }
+
+        .currency-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .currency-dropdown:hover .currency-menu {
+            display: block;
+        }
+
+        .currency-item {
+            padding: 10px 15px;
+            color: #333;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .currency-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .icon-btn {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Products Page Styles */
+        .products-page {
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .products-page h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .products-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .products-controls > div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .availability-filter select,
+        .sort-filter select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .item-count {
+            font-size: 14px;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 5px;
+        }
+
+        .view-toggle button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .view-toggle button:hover {
+            background: #f5f5f5;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .sale-badge,
+        .new-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .sale-badge {
+            background: #dc3545;
+        }
+
+        .new-badge {
+            background: #28a745;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .product-rating {
+            color: #ff8c00;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 780px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-container {
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            nav {
+                display: none;
+            }
+
+            .products-page {
+                padding: 40px 20px;
+            }
+
+            .products-page h1 {
+                font-size: 32px;
+            }
+
+            .products-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .products-controls > div {
+                justify-content: space-between;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 30px;
+            }
+
+            .view-toggle {
+                justify-content: flex-end;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 32px;
+            }
+
+            .products-page h1 {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/vb-logo-white.png?height=72&v=1757480157" alt="VentureBoard Logo">
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                <div class="currency-dropdown">
+                    <button class="currency-btn">GYD</button>
+                    <div class="currency-menu">
+                        <div class="currency-item">
+                            <span>Afghanistan</span>
+                            <span>AFN ؋</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Albania</span>
+                            <span>ALL L</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-btn">👤</button>
+                    <button class="icon-btn">🛒</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="products-page">
+        <h1>Choose Your VentureBoard</h1>
+        
+        <div class="products-controls">
+            <div class="availability-filter">
+                <select title="availability">
+                    <option>Availability</option>
+                    <option>In Stock</option>
+                    <option>Out of Stock</option>
+                </select>
+            </div>
+            <div class="item-count">10 items</div>
+            <div>
+                <div class="sort-filter">
+                    <select title="range">
+                        <option>Sort</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Best Selling</option>
+                    </select>
+                </div>
+                <div class="view-toggle">
+                    <button>⊞</button>
+                    <button>☰</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="sale-badge">Sale</span>
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/CopyofVentureBoardListing-NoirHero.jpg?v=1692613199&width=832" alt="VB mini Chess - Noir" class="product-image">
+                <h3 class="product-title">VB mini Chess - Noir</h3>
+                <div class="product-rating">★★★★★ 147 reviews</div>
+                <div class="product-price">
+                    G$9,400.00 
+                    <span class="old-price">G$12,600.00</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="sale-badge">Sale</span>
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/VentureBoardListing-FireListing02.jpg?v=1709428174&width=352" alt="VB mini Chess - Fire" class="product-image">
+                <h3 class="product-title">VB mini Chess - Fire</h3>
+                <div class="product-rating">★★★★★ 145 reviews</div>
+                <div class="product-price">
+                    G$9,400.00 
+                    <span class="old-price">G$12,600.00</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/L02.jpg?v=1713120671&width=352" alt="VB mini Chess - Skye" class="product-image">
+                <h3 class="product-title">VB mini Chess - Skye</h3>
+                <div class="product-rating">★★★★★ 32 reviews</div>
+                <div class="product-price">G$12,600.00</div>
+            </div>
+
+            <div class="product-card">
+                <span class="sale-badge">Sale</span>
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing02_2.jpg?v=1713314261&width=352" alt="VB XL Chess" class="product-image">
+                <h3 class="product-title">VB XL Chess</h3>
+                <div class="product-rating">★★★★★ 79 reviews</div>
+                <div class="product-price">
+                    G$12,600.00 
+                    <span class="old-price">G$16,900.00</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="new-badge">New</span>
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing01_1.jpg?v=1750445514&width=352" alt="VB Go 9x9" class="product-image">
+                <h3 class="product-title">VB Go 9x9</h3>
+                <div class="product-rating">★★★★★ 4 reviews</div>
+                <div class="product-price">G$9,400.00</div>
+            </div>
+
+            <div class="product-card">
+                <span class="sale-badge">Sale</span>
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing01.heic?v=1739581695&width=352" alt="VB Backgammon" class="product-image">
+                <h3 class="product-title">VB Backgammon</h3>
+                <div class="product-rating">★★★★★ 13 reviews</div>
+                <div class="product-price">
+                    G$9,400.00 
+                    <span class="old-price">G$12,600.00</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/71d1Hbs_FhL._AC_SL1500.jpg?v=1715739553&width=352" alt="Checkers Mini" class="product-image">
+                <h3 class="product-title">Xpansion Set - Checkers Pieces for VB mini</h3>
+                <div class="product-rating">★★★★★ 1 reviews</div>
+                <div class="product-price">G$2,600.00</div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/51OOFaQQA9L._AC_SL1180.jpg?v=1739149460&width=832" alt="Checkers XL" class="product-image">
+                <h3 class="product-title">Xpansion Set - Checkers Pieces for VB XL</h3>
+                <div class="product-rating">★★★★★ 1 reviews</div>
+                <div class="product-price">G$2,200.00</div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/FullSizeRender_5cabb3c5-3601-4f0e-97b1-68eede4a5c8b.jpg?v=1729679124&width=832" alt="Chess Pieces XL" class="product-image">
+                <h3 class="product-title">Xtra Set - VB XL Chess Pieces</h3>
+                <div class="product-rating">★★★★★ 1 reviews</div>
+                <div class="product-price">G$5,100.00</div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://www.ventureboardgames.com/cdn/shop/products/IMG_4494.jpg?v=1673385920&width=832" alt="Chess Pieces Mini" class="product-image">
+                <h3 class="product-title">Xtra Set - VB mini Chess Pieces</h3>
+                <div class="product-rating">★★★★★ 10 reviews</div>
+                <div class="product-price">G$3,200.00</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
