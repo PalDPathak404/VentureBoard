@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentureBoard - FAQs</title>
+    <link rel="icon" href="//www.ventureboardgames.com/cdn/shop/files/Untitled_design_41_f8437936-b5c9-411f-a130-f8656655fdf8.png?crop=center&height=32&v=1759512981&width=32" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #333;
+        }
+
+        header {
+            background-color: #000;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #fff;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .currency-dropdown {
+            position: relative;
+        }
+
+        .currency-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .currency-btn::after {
+            content: ' ▼';
+            font-size: 10px;
+        }
+
+        .currency-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .currency-dropdown:hover .currency-menu {
+            display: block;
+        }
+
+        .currency-search {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: #fff;
+        }
+
+        .currency-search input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .currency-item {
+            padding: 10px 15px;
+            color: #333;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .currency-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .icon-btn {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .faq-item {
+            margin-bottom: 40px;
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .faq-question:hover {
+            color: #ff9500;
+        }
+
+        .faq-answer {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-info {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e0e0e0;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .contact-link {
+            color: #ff9500;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .email-footer {
+            background-color: #f0f0f0;
+            padding: 60px 20px 40px;
+            margin-top: 80px;
+        }
+
+        .email-signup-section {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .email-signup-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .email-signup-section p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .email-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .email-form input:focus {
+            border-color: #999;
+        }
+
+        .email-form button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 15px;
+            color: #666;
+        }
+
+        .email-form button:hover {
+            color: #000;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding-top: 30px;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-left p,
+        .footer-left a {
+            font-size: 13px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .footer-left a:hover {
+            color: #000;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-icon {
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #000;
+        }
+
+        @media (max-width: 780px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-container {
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            nav {
+                position: fixed;
+                top: 72px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 72px);
+                background: #000;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px 0;
+                transition: left 0.3s ease;
+                border-right: 1px solid #333;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+
+            nav li {
+                width: 100%;
+                border-bottom: 1px solid #333;
+            }
+
+            nav a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+
+            #menu-toggle:checked ~ nav {
+                left: 0;
+            }
+
+            #menu-toggle:checked + .hamburger span:first-child {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            #menu-toggle:checked + .hamburger span:last-child {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            main {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .currency-btn {
+                font-size: 13px;
+            }
+
+            .header-icons {
+                gap: 15px;
+            }
+
+            .icon-btn {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .email-footer {
+                padding: 40px 20px 30px;
+            }
+
+            .email-signup-section h2 {
+                font-size: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .footer-left {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .footer-right {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/vb-logo-white.png?height=72&v=1757480157" alt="VentureBoard Logo">
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                <div class="currency-dropdown">
+                    <button class="currency-btn">GYD</button>
+                    <div class="currency-menu">
+                        <div class="currency-search">
+                            <input type="text" placeholder="Search">
+                        </div>
+                        <div class="currency-item">
+                            <span>Afghanistan</span>
+                            <span>AFN ؋</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Aland Islands</span>
+                            <span>EUR €</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Albania</span>
+                            <span>ALL L</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Algeria</span>
+                            <span>DZD د.ج</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Andorra</span>
+                            <span>EUR €</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Angola</span>
+                            <span>AOA Kz</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Anguilla</span>
+                            <span>XCD $</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Antigua & Barbuda</span>
+                            <span>XCD $</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>Argentina</span>
+                            <span>ARS $</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-btn">👤</button>
+                    <button class="icon-btn">🛒</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Frequently Asked Questions</h1>
+
+        <div class="faq-item">
+            <div class="faq-question">How does VentureBoard save games?</div>
+            <div class="faq-answer">
+                <p>The pieces are strongly magnetized to all parts of the game board and storage area. This means that they will stay put through most adventures you might go on, short of directly dropping VentureBoard onto a hard surface from over a foot up, your game will stay in place.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Where do I put pieces that are captured?</div>
+            <div class="faq-answer">
+                <p>Captured chess pieces can be stored at either end, where the magnetic pieces stick just as well. Go pieces not yet played can be stacked and stored on the storage area on one end.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How water-resistant is the bag?</div>
+            <div class="faq-answer">
+                <p>The bag included with VentureBoard is water-resistant and rated for all outdoor conditions. It will not keep VentureBoard dry if submerged in water.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Do Pieces bump into each other when rolled up?</div>
+            <div class="faq-answer">
+                <p>While they might touch each other when VentureBoard is rolled up, pieces will never move each other off of their respective squares. This means that your game will be saved regardless of the game state.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How does it stay closed?</div>
+            <div class="faq-answer">
+                <p>Large embedded neodymium magnets on both ends hold the board closed, more strongly that probably any other chess board on the market.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How big is VentureBoard?</div>
+            <div class="faq-answer">
+                <p>VentureBoard mini weighs 8 oz. It is 6.3" x 7.6" when open and rolls into a cylinder of diameter 2.8". VentureBoard XL weighs 22 oz. It is 10" x 10.5" when open and rolls into a cylinder of diameter 3.7"</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <p>If you have any questions regarding to our product, please don't hesitate to reach out to us here: <a href="contact.html" class="contact-link">https://www.ventureboardgames.com/pages/contact</a></p>
+        </div>
+    </main>
+
+    <footer class="email-footer">
+        <div class="email-signup-section">
+            <h2>Join our email list</h2>
+            <p>Get exclusive deals and early access to new products.</p>
+            <form class="email-form">
+                <input type="email" placeholder="Email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-left">
+                <p>© 2025 VentureBoard</p>
+                <a href="#">Terms and Policies</a>
+                <a href="#">US Patent No. 12,303,796</a>
+            </div>
+            <div class="footer-right">
+                <a href="https://facebook.com/ventureboardchess" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/VentureBoard1" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter">𝕏</a>
+                <a href="https://instagram.com/venture.board/#" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://youtube.com/@VentureBoardGames" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
