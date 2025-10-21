@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products - VentureBoard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,10 +15,9 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             color: #333;
-            background: #fff;
+            background: #fafafa;
         }
 
-        /* Header Styles */
         header {
             background-color: #000;
             padding: 20px 40px;
@@ -49,6 +49,11 @@
             height: 2px;
             background-color: #fff;
             display: block;
+            transition: all 0.3s;
+        }
+
+        #menu-toggle {
+            display: none;
         }
 
         .logo img {
@@ -148,11 +153,11 @@
             border: none;
         }
 
-        /* Products Page Styles */
         .products-page {
             padding: 60px 40px;
             max-width: 1400px;
             margin: 0 auto;
+            background: #fff;
         }
 
         .products-page h1 {
@@ -160,6 +165,7 @@
             font-size: 42px;
             margin-bottom: 40px;
             font-weight: 700;
+            color: #000;
         }
 
         .products-controls {
@@ -167,14 +173,19 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 40px;
-            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .products-controls > div {
+        .left-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .availability-filter select,
@@ -189,6 +200,7 @@
 
         .item-count {
             font-size: 14px;
+            color: #666;
         }
 
         .view-toggle {
@@ -211,13 +223,18 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
         }
 
         .product-card {
             position: relative;
             cursor: pointer;
+            background: #fff;
+        }
+
+        .product-card:hover {
+            opacity: 0.95;
         }
 
         .sale-badge,
@@ -245,25 +262,26 @@
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 0;
             margin-bottom: 15px;
+            background: #f5f5f5;
         }
 
         .product-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             margin-bottom: 8px;
             color: #000;
         }
 
         .product-rating {
-            color: #ff8c00;
-            font-size: 14px;
+            color: #ffa500;
+            font-size: 13px;
             margin-bottom: 8px;
         }
 
         .product-price {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #000;
         }
@@ -272,8 +290,14 @@
             text-decoration: line-through;
             color: #999;
             margin-left: 10px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
+        }
+
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 780px) {
@@ -296,7 +320,47 @@
             }
 
             nav {
-                display: none;
+                position: fixed;
+                top: 72px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 72px);
+                background: #000;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px 0;
+                transition: left 0.3s ease;
+                border-right: 1px solid #333;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+
+            nav li {
+                width: 100%;
+                border-bottom: 1px solid #333;
+            }
+
+            nav a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+
+            #menu-toggle:checked ~ nav {
+                left: 0;
+            }
+
+            #menu-toggle:checked + .hamburger span:first-child {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            #menu-toggle:checked + .hamburger span:last-child {
+                transform: rotate(-45deg) translate(5px, -5px);
             }
 
             .products-page {
@@ -308,21 +372,18 @@
             }
 
             .products-controls {
-                flex-direction: column;
-                align-items: stretch;
+                flex-wrap: wrap;
             }
 
-            .products-controls > div {
+            .left-controls,
+            .right-controls {
+                width: 100%;
                 justify-content: space-between;
             }
 
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 30px;
-            }
-
-            .view-toggle {
-                justify-content: flex-end;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
 
@@ -340,15 +401,147 @@
                 gap: 25px;
             }
         }
+.email-footer {
+        background-color: #f0f0f0;
+        padding: 60px 20px 40px;
+        margin-top: 80px;
+    }
+
+    .email-signup-section {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .email-signup-section h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #000;
+    }
+
+    .email-signup-section p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .email-form {
+        display: flex;
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .email-form input {
+        flex: 1;
+        padding: 15px 50px 15px 20px;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        font-size: 15px;
+        outline: none;
+    }
+
+    .email-form input:focus {
+        border-color: #999;
+    }
+
+    .email-form button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px 15px;
+        color: #666;
+    }
+
+    .email-form button:hover {
+        color: #000;
+    }
+
+    .footer-bottom {
+        max-width: 1400px;
+        margin: 60px auto 0;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #ddd;
+        padding-top: 30px;
+    }
+
+    .footer-left {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-left p,
+    .footer-left a {
+        font-size: 13px;
+        color: #666;
+        text-decoration: none;
+    }
+
+    .footer-left a:hover {
+        color: #000;
+    }
+
+    .footer-right {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .social-icon {
+        color: #666;
+        transition: color 0.3s;
+    }
+
+    .social-icon:hover {
+        color: #000;
+    }
+
+    @media (max-width: 768px) {
+        .email-footer {
+            padding: 40px 20px 30px;
+        }
+
+        .email-signup-section h2 {
+            font-size: 28px;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .footer-left {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .footer-right {
+            gap: 25px;
+        }
+    }
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <button class="hamburger">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
                 <span></span>
                 <span></span>
-            </button>
+            </label>
 
             <div class="logo">
                 <a href="index.html">
@@ -393,17 +586,19 @@
         <h1>Choose Your VentureBoard</h1>
         
         <div class="products-controls">
-            <div class="availability-filter">
-                <select title="availability">
-                    <option>Availability</option>
-                    <option>In Stock</option>
-                    <option>Out of Stock</option>
-                </select>
+            <div class="left-controls">
+                <div class="availability-filter">
+                    <select title="availability">
+                        <option>Availability</option>
+                        <option>In Stock</option>
+                        <option>Out of Stock</option>
+                    </select>
+                </div>
             </div>
             <div class="item-count">10 items</div>
-            <div>
+            <div class="right-controls">
                 <div class="sort-filter">
-                    <select title="range">
+                    <select title="price">
                         <option>Sort</option>
                         <option>Price: Low to High</option>
                         <option>Price: High to Low</option>
@@ -416,11 +611,11 @@
                 </div>
             </div>
         </div>
-
+       <section>
         <div class="products-grid">
             <div class="product-card">
                 <span class="sale-badge">Sale</span>
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/CopyofVentureBoardListing-NoirHero.jpg?v=1692613199&width=832" alt="VB mini Chess - Noir" class="product-image">
+                <img src="https://www.ventureboardgames.com/cdn/shop/files/VentureBoardListing-NoirListing02.jpg?v=1713120798&width=352" alt="VB mini Chess - Noir" class="product-image">
                 <h3 class="product-title">VB mini Chess - Noir</h3>
                 <div class="product-rating">★★★★★ 147 reviews</div>
                 <div class="product-price">
@@ -501,10 +696,43 @@
             <div class="product-card">
                 <img src="https://www.ventureboardgames.com/cdn/shop/products/IMG_4494.jpg?v=1673385920&width=832" alt="Chess Pieces Mini" class="product-image">
                 <h3 class="product-title">Xtra Set - VB mini Chess Pieces</h3>
-                <div class="product-rating">★★★★★ 10 reviews</div>
-                <div class="product-price">G$3,200.00</div>
+                <div class="product-rating">★★★★★ 1 reviews</div>
+                <div class="product-price">G$2,200.00</div>
+            </div>
+            </section>
+            <footer class="email-footer">
+        <div class="email-signup-section">
+            <h2>Join our email list</h2>
+            <p>Get exclusive deals and early access to new products.</p>
+            <form class="email-form">
+                <input type="email" placeholder="Email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-left">
+                <p>© 2025 VentureBoard</p>
+                <a href="#">Terms and Policies</a>
+                <a href="#">US Patent No. 12,303,796</a>
+            </div>
+            <div class="footer-right">
+                <a href="https://facebook.com/ventureboardchess" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/VentureBoard1" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter">𝕏</a>
+                <a href="https://instagram.com/venture.board/#" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://youtube.com/@VentureBoardGames" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
             </div>
         </div>
-    </div>
+    </footer>
+
 </body>
 </html>
