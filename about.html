@@ -363,6 +363,14 @@
             color: #000;
         }
 
+        .mobile-menu-extras {
+            display: none;
+        }
+
+        .mobile-currency-toggle {
+            display: none;
+        }
+
         @media (max-width: 780px) {
             header {
                 padding: 15px 20px;
@@ -370,16 +378,28 @@
 
             .hamburger {
                 display: flex;
+                order: 1;
             }
 
             .header-container {
-                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
             .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
+                order: 2;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+            }
+
+            .header-right {
+                order: 3;
+            }
+
+            .currency-dropdown {
+                display: none;
             }
 
             nav {
@@ -395,6 +415,8 @@
                 padding: 20px 0;
                 transition: left 0.3s ease;
                 border-right: 1px solid #333;
+                overflow-y: auto;
+                order: 4;
             }
 
             nav ul {
@@ -412,6 +434,50 @@
                 display: block;
                 padding: 15px 20px;
                 font-size: 16px;
+            }
+
+            .mobile-menu-extras {
+                display: block;
+                padding: 20px;
+                border-top: 1px solid #333;
+                margin-top: 10px;
+            }
+
+            .mobile-currency-btn {
+                width: 100%;
+                background: none;
+                border: 1px solid #333;
+                color: #fff;
+                padding: 12px 15px;
+                text-align: left;
+                font-size: 15px;
+                cursor: pointer;
+                border-radius: 4px;
+                display: block;
+            }
+
+            .mobile-currency-btn::after {
+                content: ' ▼';
+                float: right;
+                font-size: 10px;
+            }
+
+            .mobile-currency-menu {
+                display: none;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                max-height: 300px;
+                overflow-y: auto;
+                margin-top: 10px;
+            }
+
+            .mobile-currency-toggle:checked ~ .mobile-currency-menu {
+                display: block;
+            }
+
+            .mobile-currency-toggle:checked ~ .mobile-currency-btn::after {
+                content: ' ▲';
             }
 
             #menu-toggle:checked ~ nav {
@@ -438,10 +504,6 @@
                 font-size: 20px;
             }
 
-            .currency-btn {
-                font-size: 13px;
-            }
-
             .header-icons {
                 gap: 15px;
             }
@@ -451,7 +513,7 @@
             }
         }
 
-     @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .email-footer {
                 padding: 40px 20px 30px;
             }
@@ -477,7 +539,6 @@
             }
         }
 
-            
         @media (max-width: 480px) {
             .logo img {
                 height: 32px;
@@ -509,6 +570,53 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
+                <div class="mobile-menu-extras">
+                    <div class="mobile-currency-dropdown">
+                        <input type="checkbox" id="mobile-currency-toggle" class="mobile-currency-toggle">
+                        <label for="mobile-currency-toggle" class="mobile-currency-btn">GYD</label>
+                        <div class="mobile-currency-menu">
+                            <div class="currency-search">
+                                <input type="text" placeholder="Search">
+                            </div>
+                            <div class="currency-item">
+                                <span>Afghanistan</span>
+                                <span>AFN ؋</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Aland Islands</span>
+                                <span>EUR €</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Albania</span>
+                                <span>ALL L</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Algeria</span>
+                                <span>DZD د.ج</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Andorra</span>
+                                <span>EUR €</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Angola</span>
+                                <span>AOA Kz</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Anguilla</span>
+                                <span>XCD $</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Antigua & Barbuda</span>
+                                <span>XCD $</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Argentina</span>
+                                <span>ARS $</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <div class="header-right">

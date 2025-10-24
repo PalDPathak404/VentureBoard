@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VentureBoard - World's Best Travel Games</title>
-        <link rel="icon" href="//www.ventureboardgames.com/cdn/shop/files/Untitled_design_41_f8437936-b5c9-411f-a130-f8656655fdf8.png?crop=center&height=32&v=1759512981&width=32" type="image/x-icon">
+    <link rel="icon" href="//www.ventureboardgames.com/cdn/shop/files/Untitled_design_41_f8437936-b5c9-411f-a130-f8656655fdf8.png?crop=center&height=32&v=1759512981&width=32" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -168,6 +168,14 @@
             background: none;
             border: none;
             padding: 0;
+        }
+
+        .mobile-menu-extras {
+            display: none;
+        }
+
+        .mobile-currency-toggle {
+            display: none;
         }
 
         .hero {
@@ -372,281 +380,99 @@
             margin-top: 20px;
         }
 
-        
         .review-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-    }
-
-    .review-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .review-text {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #333;
-      margin-bottom: 30px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .review-text:last-of-type {
-      margin-bottom: 40px;
-    }
-
-    .star-rating {
-      margin-bottom: 20px;
-    }
-
-    .star-rating span {
-      color: #ff9800;
-      font-size: 24px;
-    }
-
-    .reviewer-info {
-      font-weight: 600;
-      color: #000;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .verified-badge {
-      background: #000;
-      color: #fff;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
-
-    .product-link {
-      color: #000;
-      text-decoration: underline;
-      font-size: 14px;
-    }
-
-    .navigation-buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .nav-btn {
-      background: none;
-      border: 1px solid #ddd;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 20px;
-      transition: all 0.3s;
-    }
-
-    .nav-btn:hover {
-      border-color: #000;
-      color: #000;
-    }
-
-    @media (max-width: 768px) {
-      .review-container {
-        padding: 20px 15px;
-      }
-
-      .review-card {
-        padding: 30px 20px;
-      }
-
-      .review-text {
-        font-size: 14px;
-      }
-
-      .star-rating span {
-        font-size: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .review-card {
-        padding: 20px 15px;
-      }
-
-      .review-text {
-        font-size: 13px;
-      }
-    }
-
-        
-
-        @media (max-width: 780px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .header-container {
-                position: relative;
-            }
-
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            nav {
-                position: fixed;
-                top: 72px;
-                left: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: calc(100vh - 72px);
-                background: #000;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 20px 0;
-                transition: left 0.3s ease;
-                border-right: 1px solid #333;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-                width: 100%;
-            }
-
-            nav li {
-                width: 100%;
-                border-bottom: 1px solid #333;
-            }
-
-            nav a {
-                display: block;
-                padding: 15px 20px;
-                font-size: 16px;
-            }
-
-            #menu-toggle:checked ~ nav {
-                left: 0;
-            }
-
-            #menu-toggle:checked + .hamburger span:first-child {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            #menu-toggle:checked + .hamburger span:last-child {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-
-            .hero {
-                flex-direction: column;
-            }
-
-            .hero-image {
-                min-height: 50vh;
-            }
-
-            .hero-content {
-                padding: 40px 20px;
-            }
-
-            .hero-content h1 {
-                font-size: 36px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-
-            .shop-btn {
-                width: 100%;
-                padding: 16px 30px;
-            }
-
-            .currency-btn {
-                font-size: 13px;
-            }
-
-            .header-icons {
-                gap: 15px;
-            }
-
-            .icon-btn {
-                font-size: 18px;
-            }
-
-            .video-showcase {
-                padding: 40px 15px;
-            }
-
-            .video-title {
-                font-size: 22px;
-                margin-bottom: 20px;
-            }
-
-            .explore-btn {
-                padding: 12px 35px;
-                font-size: 12px;
-            }
-
-            .hero-section h1 {
-                font-size: 36px;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            
+        .review-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
-        @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .review-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        @media (max-width: 480px) {
-            .logo img {
-                height: 32px;
-            }
-
-            .hero-content h1 {
-                font-size: 28px;
-            }
-
-            .hero-content p {
-                font-size: 16px;
-            }
+        .review-text:last-of-type {
+            margin-bottom: 40px;
         }
-       .email-footer {
+
+        .star-rating {
+            margin-bottom: 20px;
+        }
+
+        .star-rating span {
+            color: #ff9800;
+            font-size: 24px;
+        }
+
+        .reviewer-info {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .review-card .verified-badge {
+            background: #000;
+            color: #fff;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .product-link {
+            color: #000;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .navigation-buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            border-color: #000;
+            color: #000;
+        }
+
+        .email-footer {
             background-color: #f0f0f0;
             padding: 60px 20px 40px;
             margin-top: 80px;
@@ -751,7 +577,195 @@
         .social-icon:hover {
             color: #000;
         }
+
+        @media (max-width: 780px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 1;
+            }
+
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                order: 2;
+                position: static;
+                transform: none;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+            }
+
+            .header-right {
+                order: 3;
+            }
+
+            .currency-dropdown {
+                display: none;
+            }
+
+            nav {
+                position: fixed;
+                top: 72px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 72px);
+                background: #000;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px 0;
+                transition: left 0.3s ease;
+                border-right: 1px solid #333;
+                overflow-y: auto;
+                order: 4;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+
+            nav li {
+                width: 100%;
+                border-bottom: 1px solid #333;
+            }
+
+            nav a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+
+            .mobile-menu-extras {
+                display: block;
+                padding: 20px;
+                border-top: 1px solid #333;
+                margin-top: 10px;
+            }
+
+            .mobile-currency-dropdown {
+                position: relative;
+            }
+
+            .mobile-currency-btn {
+                width: 100%;
+                background: none;
+                border: 1px solid #333;
+                color: #fff;
+                padding: 12px 15px;
+                text-align: left;
+                font-size: 15px;
+                cursor: pointer;
+                border-radius: 4px;
+                display: block;
+            }
+
+            .mobile-currency-btn::after {
+                content: ' ▼';
+                float: right;
+                font-size: 10px;
+            }
+
+            .mobile-currency-menu {
+                display: none;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                max-height: 300px;
+                overflow-y: auto;
+                margin-top: 10px;
+            }
+
+            .mobile-currency-toggle:checked ~ .mobile-currency-menu {
+                display: block;
+            }
+
+            .mobile-currency-toggle:checked ~ .mobile-currency-btn::after {
+                content: ' ▲';
+            }
+
+            #menu-toggle:checked ~ nav {
+                left: 0;
+            }
+
+            #menu-toggle:checked + .hamburger span:first-child {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            #menu-toggle:checked + .hamburger span:last-child {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-image {
+                min-height: 50vh;
+            }
+
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .shop-btn {
+                width: 100%;
+                padding: 16px 30px;
+            }
+
+            .header-icons {
+                gap: 15px;
+            }
+
+            .icon-btn {
+                font-size: 18px;
+            }
+
+            .video-showcase {
+                padding: 40px 15px;
+            }
+
+            .video-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+
+            .explore-btn {
+                padding: 12px 35px;
+                font-size: 12px;
+            }
+
+            .hero-section h1 {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
             .email-footer {
                 padding: 40px 20px 30px;
             }
@@ -775,8 +789,51 @@
             .footer-right {
                 gap: 25px;
             }
+
+            .review-container {
+                padding: 20px 15px;
+            }
+
+            .review-card {
+                padding: 30px 20px;
+            }
+
+            .review-text {
+                font-size: 14px;
+            }
+
+            .star-rating span {
+                font-size: 20px;
+            }
         }
 
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 32px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .review-card {
+                padding: 20px 15px;
+            }
+
+            .review-text {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -803,6 +860,53 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
+                <div class="mobile-menu-extras">
+                    <div class="mobile-currency-dropdown">
+                        <input type="checkbox" id="mobile-currency-toggle" class="mobile-currency-toggle">
+                        <label for="mobile-currency-toggle" class="mobile-currency-btn">GYD</label>
+                        <div class="mobile-currency-menu">
+                            <div class="currency-search">
+                                <input type="text" placeholder="Search">
+                            </div>
+                            <div class="currency-item">
+                                <span>Afghanistan</span>
+                                <span>AFN ؋</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Aland Islands</span>
+                                <span>EUR €</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Albania</span>
+                                <span>ALL L</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Algeria</span>
+                                <span>DZD د.ج</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Andorra</span>
+                                <span>EUR €</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Angola</span>
+                                <span>AOA Kz</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Anguilla</span>
+                                <span>XCD $</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Antigua & Barbuda</span>
+                                <span>XCD $</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Argentina</span>
+                                <span>ARS $</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <div class="header-right">
@@ -870,20 +974,17 @@
     <section class="video-showcase">
         <div class="video-container">
             <h2 class="video-title">Compact, Portable, Durable</h2>
-            
             <div class="video-wrapper">
                 <video class="showcase-video" controls controlsList="nodownload">
                     <source src="https://www.ventureboardgames.com/cdn/shop/videos/c/vp/3f18b1571d7b406f90ece33c78b0d491/3f18b1571d7b406f90ece33c78b0d491.HD-1080p-7.2Mbps-57855814.mp4?v=0" type="video/mp4">
                 </video>
             </div>
-            
             <button class="explore-btn">EXPLORE THE COLLECTION</button>
         </div>
     </section>
 
     <section class="hero-section">
         <h1>Always Ready, Wherever You Are</h1>
-        
         <div class="features-grid">
             <div class="feature-card">
                 <img src="https://www.ventureboardgames.com/cdn/shop/files/instantly-ready-playable-anywhere.png?v=1758322782&width=352" alt="Play" class="feature-image">
@@ -891,21 +992,18 @@
                 <h3>Instantly Ready, Playable Anywhere</h3>
                 <p>VentureBoard unrolls at the touch of a hand to let you play chess wherever you want, whenever you want. No set up time or fumbling for pieces</p>
             </div>
-
             <div class="feature-card">
                 <img src="https://www.ventureboardgames.com/cdn/shop/files/game-saved-in-a-snap.gif?v=1758322844&width=352" alt="Pause" class="feature-image">
                 <div class="feature-label">Pause.</div>
                 <h3>Game Saved in a Snap</h3>
                 <p>Gotta run? No problem. VentureBoard rolls to pause your game any time. Strong magnets keep your game locked and magnetic pieces stay in place till you're ready to resume.</p>
             </div>
-
             <div class="feature-card">
                 <img src="https://www.ventureboardgames.com/cdn/shop/files/pieces-stay-in-place.png?v=1758323255&width=352" alt="Resume" class="feature-image">
                 <div class="feature-label">Resume.</div>
                 <h3>Pieces Stay in Place</h3>
                 <p>Uniquely shaped and magnetized design keeps your game right where you left it. When you're ready to resume playing, just roll out your VentureBoard and carry on.</p>
             </div>
-
             <div class="feature-card">
                 <img src="https://www.ventureboardgames.com/cdn/shop/files/designed-for-every-adventure.png?v=1758322548&width=352" alt="Repeat" class="feature-image">
                 <div class="feature-label">Repeat.</div>
@@ -923,37 +1021,27 @@
             <span>Verified</span>
             <span class="verified-badge">✓</span>
         </div>
-        
     </section>
+
     <div class="review-container">
-    <div class="review-card">
-      <div class="quote-icon">❝</div>
-      <p class="review-text">
-        I purchased the smaller size first - which is alright if you want something truly compact for a backpacking trip or whatever. The pieces are all identical with stickers to distinguish them (and the stickers are solid with replacements provided).
-      </p>
-      
-      <p class="review-text">
-        That being said, I prefer this larger size with unique pieces that make them more easily identifiable. Either one is a solid choice depending on your situation, but to me the smaller board is only preferable if you're really trying to minimize the space of the set.
-      </p>
-      
-      <div class="star-rating">
-        <span>★★★★★</span>
-      </div>
-      
-      <div class="reviewer-info">
-        <span>Michael T.</span>
-        <span class="verified-badge">✓</span>
-      </div>
-      
-      <a href="#" class="product-link">VB XL Chess</a>
-      
-      <div class="navigation-buttons">
-        <button class="nav-btn">‹</button>
-        <button class="nav-btn">›</button>
-      </div>
-      
+        <div class="review-card">
+            <div class="quote-icon">❝</div>
+            <p class="review-text">I purchased the smaller size first - which is alright if you want something truly compact for a backpacking trip or whatever. The pieces are all identical with stickers to distinguish them (and the stickers are solid with replacements provided).</p>
+            <p class="review-text">That being said, I prefer this larger size with unique pieces that make them more easily identifiable. Either one is a solid choice depending on your situation, but to me the smaller board is only preferable if you're really trying to minimize the space of the set.</p>
+            <div class="star-rating">
+                <span>★★★★★</span>
+            </div>
+            <div class="reviewer-info">
+                <span>Michael T.</span>
+                <span class="verified-badge">✓</span>
+            </div>
+            <a href="#" class="product-link">VB XL Chess</a>
+            <div class="navigation-buttons">
+                <button class="nav-btn">‹</button>
+                <button class="nav-btn">›</button>
+            </div>
+        </div>
     </div>
-  </div>
 
     <footer class="email-footer">
         <div class="email-signup-section">
@@ -964,7 +1052,6 @@
                 <button type="submit">→</button>
             </form>
         </div>
-        
         <div class="footer-bottom">
             <div class="footer-left">
                 <p>© 2025 VentureBoard</p>

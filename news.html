@@ -8,462 +8,506 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            color: #333;
-        }
-
-        header {
-            background-color: #000;
-            padding: 20px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: #fff;
-            display: block;
-            transition: all 0.3s;
-        }
-
-        #menu-toggle {
-            display: none;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        nav {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 400;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.7;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .currency-dropdown {
-            position: relative;
-        }
-
-        .currency-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 15px;
-            cursor: pointer;
-            padding: 5px 10px;
-        }
-
-        .currency-btn::after {
-            content: ' ▼';
-            font-size: 10px;
-        }
-
-        .currency-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            min-width: 250px;
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .currency-dropdown:hover .currency-menu {
-            display: block;
-        }
-
-        .currency-search {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            background: #fff;
-        }
-
-        .currency-search input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .currency-item {
-            padding: 10px 15px;
-            color: #333;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .currency-item:hover {
-            background-color: #f5f5f5;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .icon-btn {
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        main h1 {
-            font-size: 36px;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        .news-item {
-            margin-bottom: 50px;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 40px;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-item h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #ff9500;
-        }
-
-        .news-date {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .news-item p {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .read-more {
-            color: #ff9500;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .read-more:hover {
-            text-decoration: underline;
-        }
-
-        .news-with-image {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .news-image {
-            width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .email-footer {
-            background-color: #f0f0f0;
-            padding: 60px 20px 40px;
-            margin-top: 80px;
-        }
-
-        .email-signup-section {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .email-signup-section h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .email-signup-section p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .email-form {
-            display: flex;
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .email-form input {
-            flex: 1;
-            padding: 15px 50px 15px 20px;
-            border: 1px solid #ccc;
-            border-radius: 30px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .email-form input:focus {
-            border-color: #999;
-        }
-
-        .email-form button {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 10px 15px;
-            color: #666;
-        }
-
-        .email-form button:hover {
-            color: #000;
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 60px auto 0;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #ddd;
-            padding-top: 30px;
-        }
-
-        .footer-left {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .footer-left p,
-        .footer-left a {
-            font-size: 13px;
-            color: #666;
-            text-decoration: none;
-        }
-
-        .footer-left a:hover {
-            color: #000;
-        }
-
-        .footer-right {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .social-icon {
-            color: #666;
-            transition: color 0.3s;
-        }
-
-        .social-icon:hover {
-            color: #000;
-        }
-
-        @media (max-width: 780px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .header-container {
-                position: relative;
-            }
-
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            nav {
-                position: fixed;
-                top: 72px;
-                left: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: calc(100vh - 72px);
-                background: #000;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 20px 0;
-                transition: left 0.3s ease;
-                border-right: 1px solid #333;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-                width: 100%;
-            }
-
-            nav li {
-                width: 100%;
-                border-bottom: 1px solid #333;
-            }
-
-            nav a {
-                display: block;
-                padding: 15px 20px;
-                font-size: 16px;
-            }
-
-            #menu-toggle:checked ~ nav {
-                left: 0;
-            }
-
-            #menu-toggle:checked + .hamburger span:first-child {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            #menu-toggle:checked + .hamburger span:last-child {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-
-            main {
-                padding: 40px 20px;
-            }
-
-            main h1 {
-                font-size: 28px;
-            }
-
-            .news-with-image {
-                grid-template-columns: 1fr;
-            }
-
-            .currency-btn {
-                font-size: 13px;
-            }
-
-            .header-icons {
-                gap: 15px;
-            }
-
-            .icon-btn {
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .email-footer {
-                padding: 40px 20px 30px;
-            }
-
-            .email-signup-section h2 {
-                font-size: 28px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 20px;
-                padding: 20px;
-            }
-
-            .footer-left {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-
-            .footer-right {
-                gap: 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo img {
-                height: 32px;
-            }
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+}
+
+header {
+    background-color: #000;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    transition: all 0.3s;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: opacity 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.currency-dropdown {
+    position: relative;
+}
+
+.currency-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.currency-btn::after {
+    content: ' ▼';
+    font-size: 10px;
+}
+
+.currency-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.currency-dropdown:hover .currency-menu {
+    display: block;
+}
+
+.currency-search {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: #fff;
+}
+
+.currency-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.currency-item {
+    padding: 10px 15px;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.currency-item:hover {
+    background-color: #f5f5f5;
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon-btn {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+main h1 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.news-item {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 40px;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-item h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #ff9500;
+}
+
+.news-date {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.news-item p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    color: #ff9500;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.news-with-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.news-image {
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.email-footer {
+    background-color: #f0f0f0;
+    padding: 60px 20px 40px;
+    margin-top: 80px;
+}
+
+.email-signup-section {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.email-signup-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.email-signup-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.email-form {
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.email-form input {
+    flex: 1;
+    padding: 15px 50px 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 15px;
+    outline: none;
+}
+
+.email-form input:focus {
+    border-color: #999;
+}
+
+.email-form button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: #666;
+}
+
+.email-form button:hover {
+    color: #000;
+}
+
+.footer-bottom {
+    max-width: 1400px;
+    margin: 60px auto 0;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+}
+
+.footer-left {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-left p,
+.footer-left a {
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+}
+
+.footer-left a:hover {
+    color: #000;
+}
+
+.footer-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.social-icon {
+    color: #666;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #000;
+}
+
+.mobile-menu-extras {
+    display: none;
+}
+
+.mobile-currency-toggle {
+    display: none;
+}
+
+@media (max-width: 780px) {
+    header {
+        padding: 15px 20px;
+    }
+    .hamburger {
+        display: flex;
+        order: 1;
+    }
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo {
+        order: 2;
+        position: static;
+        transform: none;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+    .header-right {
+        order: 3;
+    }
+    .currency-dropdown {
+        display: none;
+    }
+    nav {
+        position: fixed;
+        top: 72px;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 72px);
+        background: #000;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 20px 0;
+        transition: left 0.3s ease;
+        border-right: 1px solid #333;
+        overflow-y: auto;
+        order: 4;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    nav li {
+        width: 100%;
+        border-bottom: 1px solid #333;
+    }
+    nav a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    .mobile-menu-extras {
+        display: block;
+        padding: 20px;
+        border-top: 1px solid #333;
+        margin-top: 10px;
+    }
+    .mobile-currency-dropdown {
+        position: relative;
+    }
+    .mobile-currency-btn {
+        width: 100%;
+        background: none;
+        border: 1px solid #333;
+        color: #fff;
+        padding: 12px 15px;
+        text-align: left;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 4px;
+        display: block;
+    }
+    .mobile-currency-btn::after {
+        content: ' ▼';
+        float: right;
+        font-size: 10px;
+    }
+    .mobile-currency-menu {
+        display: none;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 10px;
+    }
+    .mobile-currency-toggle:checked ~ .mobile-currency-menu {
+        display: block;
+    }
+    .mobile-currency-toggle:checked ~ .mobile-currency-btn::after {
+        content: ' ▲';
+    }
+    #menu-toggle:checked ~ nav {
+        left: 0;
+    }
+    #menu-toggle:checked + .hamburger span:first-child {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    #menu-toggle:checked + .hamburger span:last-child {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+    main {
+        padding: 40px 20px;
+    }
+    main h1 {
+        font-size: 28px;
+    }
+    .news-with-image {
+        grid-template-columns: 1fr;
+    }
+    .currency-btn {
+        font-size: 13px;
+    }
+    .header-icons {
+        gap: 15px;
+    }
+    .icon-btn {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .email-footer {
+        padding: 40px 20px 30px;
+    }
+    .email-signup-section h2 {
+        font-size: 28px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    .footer-left {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .footer-right {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 32px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -482,15 +526,63 @@
             </div>
             
             <nav>
-                <ul>
-                    <li><a href="products.html">All Products</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
+    <ul>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <div class="mobile-menu-extras">
+        <div class="mobile-currency-dropdown">
+            <input type="checkbox" id="mobile-currency-toggle" class="mobile-currency-toggle">
+            <label for="mobile-currency-toggle" class="mobile-currency-btn">GYD</label>
+            <div class="mobile-currency-menu">
+                <div class="currency-search">
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="currency-item">
+                    <span>Afghanistan</span>
+                    <span>AFN ؋</span>
+                </div>
+                <div class="currency-item">
+                    <span>Aland Islands</span>
+                    <span>EUR €</span>
+                </div>
+                <div class="currency-item">
+                    <span>Albania</span>
+                    <span>ALL L</span>
+                </div>
+                <div class="currency-item">
+                    <span>Algeria</span>
+                    <span>DZD د.ج</span>
+                </div>
+                <div class="currency-item">
+                    <span>Andorra</span>
+                    <span>EUR €</span>
+                </div>
+                <div class="currency-item">
+                    <span>Angola</span>
+                    <span>AOA Kz</span>
+                </div>
+                <div class="currency-item">
+                    <span>Anguilla</span>
+                    <span>XCD $</span>
+                </div>
+                <div class="currency-item">
+                    <span>Antigua & Barbuda</span>
+                    <span>XCD $</span>
+                </div>
+                <div class="currency-item">
+                    <span>Argentina</span>
+                    <span>ARS $</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
 
             <div class="header-right">
                 <div class="currency-dropdown">

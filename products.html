@@ -154,6 +154,14 @@
             border: none;
         }
 
+        .mobile-menu-extras {
+            display: none;
+        }
+
+        .mobile-currency-toggle {
+            display: none;
+        }
+
         .products-page {
             padding: 60px 40px;
             max-width: 1400px;
@@ -177,12 +185,7 @@
             gap: 15px;
         }
 
-        .left-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
+        .left-controls,
         .right-controls {
             display: flex;
             align-items: center;
@@ -295,6 +298,112 @@
             font-weight: 400;
         }
 
+        .email-footer {
+            background-color: #f0f0f0;
+            padding: 60px 20px 40px;
+            margin-top: 80px;
+        }
+
+        .email-signup-section {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .email-signup-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .email-signup-section p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .email-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .email-form input:focus {
+            border-color: #999;
+        }
+
+        .email-form button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 15px;
+            color: #666;
+        }
+
+        .email-form button:hover {
+            color: #000;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding-top: 30px;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-left p,
+        .footer-left a {
+            font-size: 13px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .footer-left a:hover {
+            color: #000;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-icon {
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #000;
+        }
+
         @media (max-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -308,16 +417,30 @@
 
             .hamburger {
                 display: flex;
+                order: 1;
             }
 
             .header-container {
-                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
             .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
+                order: 2;
+                position: static;
+                transform: none;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+            }
+
+            .header-right {
+                order: 3;
+            }
+
+            .currency-dropdown {
+                display: none;
             }
 
             nav {
@@ -333,6 +456,8 @@
                 padding: 20px 0;
                 transition: left 0.3s ease;
                 border-right: 1px solid #333;
+                overflow-y: auto;
+                order: 4;
             }
 
             nav ul {
@@ -350,6 +475,54 @@
                 display: block;
                 padding: 15px 20px;
                 font-size: 16px;
+            }
+
+            .mobile-menu-extras {
+                display: block;
+                padding: 20px;
+                border-top: 1px solid #333;
+                margin-top: 10px;
+            }
+
+            .mobile-currency-dropdown {
+                position: relative;
+            }
+
+            .mobile-currency-btn {
+                width: 100%;
+                background: none;
+                border: 1px solid #333;
+                color: #fff;
+                padding: 12px 15px;
+                text-align: left;
+                font-size: 15px;
+                cursor: pointer;
+                border-radius: 4px;
+                display: block;
+            }
+
+            .mobile-currency-btn::after {
+                content: ' ▼';
+                float: right;
+                font-size: 10px;
+            }
+
+            .mobile-currency-menu {
+                display: none;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                max-height: 300px;
+                overflow-y: auto;
+                margin-top: 10px;
+            }
+
+            .mobile-currency-toggle:checked ~ .mobile-currency-menu {
+                display: block;
+            }
+
+            .mobile-currency-toggle:checked ~ .mobile-currency-btn::after {
+                content: ' ▲';
             }
 
             #menu-toggle:checked ~ nav {
@@ -388,6 +561,32 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .email-footer {
+                padding: 40px 20px 30px;
+            }
+
+            .email-signup-section h2 {
+                font-size: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .footer-left {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .footer-right {
+                gap: 25px;
+            }
+        }
+
         @media (max-width: 480px) {
             .logo img {
                 height: 32px;
@@ -402,137 +601,6 @@
                 gap: 25px;
             }
         }
-.email-footer {
-        background-color: #f0f0f0;
-        padding: 60px 20px 40px;
-        margin-top: 80px;
-    }
-
-    .email-signup-section {
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .email-signup-section h2 {
-        font-size: 36px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #000;
-    }
-
-    .email-signup-section p {
-        font-size: 16px;
-        color: #666;
-        margin-bottom: 30px;
-    }
-
-    .email-form {
-        display: flex;
-        max-width: 400px;
-        margin: 0 auto;
-        position: relative;
-    }
-
-    .email-form input {
-        flex: 1;
-        padding: 15px 50px 15px 20px;
-        border: 1px solid #ccc;
-        border-radius: 30px;
-        font-size: 15px;
-        outline: none;
-    }
-
-    .email-form input:focus {
-        border-color: #999;
-    }
-
-    .email-form button {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 10px 15px;
-        color: #666;
-    }
-
-    .email-form button:hover {
-        color: #000;
-    }
-
-    .footer-bottom {
-        max-width: 1400px;
-        margin: 60px auto 0;
-        padding: 0 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid #ddd;
-        padding-top: 30px;
-    }
-
-    .footer-left {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .footer-left p,
-    .footer-left a {
-        font-size: 13px;
-        color: #666;
-        text-decoration: none;
-    }
-
-    .footer-left a:hover {
-        color: #000;
-    }
-
-    .footer-right {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-    }
-
-    .social-icon {
-        color: #666;
-        transition: color 0.3s;
-    }
-
-    .social-icon:hover {
-        color: #000;
-    }
-
-    @media (max-width: 768px) {
-        .email-footer {
-            padding: 40px 20px 30px;
-        }
-
-        .email-signup-section h2 {
-            font-size: 28px;
-        }
-
-        .footer-bottom {
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .footer-left {
-            flex-direction: column;
-            gap: 10px;
-            text-align: center;
-        }
-
-        .footer-right {
-            gap: 25px;
-        }
-    }
     </style>
 </head>
 <body>
@@ -559,6 +627,53 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
+                <div class="mobile-menu-extras">
+                    <div class="mobile-currency-dropdown">
+                        <input type="checkbox" id="mobile-currency-toggle" class="mobile-currency-toggle">
+                        <label for="mobile-currency-toggle" class="mobile-currency-btn">GYD</label>
+                        <div class="mobile-currency-menu">
+                            <div class="currency-search">
+                                <input type="text" placeholder="Search">
+                            </div>
+                            <div class="currency-item">
+                                <span>Afghanistan</span>
+                                <span>AFN ؋</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Aland Islands</span>
+                                <span>EUR €</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Albania</span>
+                                <span>ALL L</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Algeria</span>
+                                <span>DZD د.ج</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Andorra</span>
+                                <span>EUR €</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Angola</span>
+                                <span>AOA Kz</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Anguilla</span>
+                                <span>XCD $</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Antigua & Barbuda</span>
+                                <span>XCD $</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>Argentina</span>
+                                <span>ARS $</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <div class="header-right">
@@ -640,128 +755,131 @@
                 </div>
             </div>
         </div>
-       <section>
-        <div class="products-grid">
-            <div class="product-card">
-                <span class="sale-badge">Sale</span>
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/VentureBoardListing-NoirListing02.jpg?v=1713120798&width=352" alt="VB mini Chess - Noir" class="product-image">
-                <h3 class="product-title">VB mini Chess - Noir</h3>
-                <div class="product-rating">★★★★★ 147 reviews</div>
-                <div class="product-price">
-                    G$9,400.00 
-                    <span class="old-price">G$12,600.00</span>
+
+        <section>
+            <div class="products-grid">
+                <div class="product-card">
+                    <span class="sale-badge">Sale</span>
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/VentureBoardListing-NoirListing02.jpg?v=1713120798&width=352" alt="VB mini Chess - Noir" class="product-image">
+                    <h3 class="product-title">VB mini Chess - Noir</h3>
+                    <div class="product-rating">★★★★★ 147 reviews</div>
+                    <div class="product-price">
+                        G$9,400.00 
+                        <span class="old-price">G$12,600.00</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="sale-badge">Sale</span>
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/VentureBoardListing-FireListing02.jpg?v=1709428174&width=352" alt="VB mini Chess - Fire" class="product-image">
+                    <h3 class="product-title">VB mini Chess - Fire</h3>
+                    <div class="product-rating">★★★★★ 145 reviews</div>
+                    <div class="product-price">
+                        G$9,400.00 
+                        <span class="old-price">G$12,600.00</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/L02.jpg?v=1713120671&width=352" alt="VB mini Chess - Skye" class="product-image">
+                    <h3 class="product-title">VB mini Chess - Skye</h3>
+                    <div class="product-rating">★★★★★ 32 reviews</div>
+                    <div class="product-price">G$12,600.00</div>
+                </div>
+
+                <div class="product-card">
+                    <span class="sale-badge">Sale</span>
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing02_2.jpg?v=1713314261&width=352" alt="VB XL Chess" class="product-image">
+                    <h3 class="product-title">VB XL Chess</h3>
+                    <div class="product-rating">★★★★★ 79 reviews</div>
+                    <div class="product-price">
+                        G$12,600.00 
+                        <span class="old-price">G$16,900.00</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="new-badge">New</span>
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing01_1.jpg?v=1750445514&width=352" alt="VB Go 9x9" class="product-image">
+                    <h3 class="product-title">VB Go 9x9</h3>
+                    <div class="product-rating">★★★★★ 4 reviews</div>
+                    <div class="product-price">G$9,400.00</div>
+                </div>
+
+                <div class="product-card">
+                    <span class="sale-badge">Sale</span>
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing01.heic?v=1739581695&width=352" alt="VB Backgammon" class="product-image">
+                    <h3 class="product-title">VB Backgammon</h3>
+                    <div class="product-rating">★★★★★ 13 reviews</div>
+                    <div class="product-price">
+                        G$9,400.00 
+                        <span class="old-price">G$12,600.00</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/71d1Hbs_FhL._AC_SL1500.jpg?v=1715739553&width=352" alt="Checkers Mini" class="product-image">
+                    <h3 class="product-title">Xpansion Set - Checkers Pieces for VB mini</h3>
+                    <div class="product-rating">★★★★★ 1 reviews</div>
+                    <div class="product-price">G$2,600.00</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/51OOFaQQA9L._AC_SL1180.jpg?v=1739149460&width=832" alt="Checkers XL" class="product-image">
+                    <h3 class="product-title">Xpansion Set - Checkers Pieces for VB XL</h3>
+                    <div class="product-rating">★★★★★ 1 reviews</div>
+                    <div class="product-price">G$2,200.00</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/files/FullSizeRender_5cabb3c5-3601-4f0e-97b1-68eede4a5c8b.jpg?v=1729679124&width=832" alt="Chess Pieces XL" class="product-image">
+                    <h3 class="product-title">Xtra Set - VB XL Chess Pieces</h3>
+                    <div class="product-rating">★★★★★ 1 reviews</div>
+                    <div class="product-price">G$5,100.00</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.ventureboardgames.com/cdn/shop/products/IMG_4494.jpg?v=1673385920&width=832" alt="Chess Pieces Mini" class="product-image">
+                    <h3 class="product-title">Xtra Set - VB mini Chess Pieces</h3>
+                    <div class="product-rating">★★★★★ 1 reviews</div>
+                    <div class="product-price">G$2,200.00</div>
                 </div>
             </div>
+        </section>
 
-            <div class="product-card">
-                <span class="sale-badge">Sale</span>
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/VentureBoardListing-FireListing02.jpg?v=1709428174&width=352" alt="VB mini Chess - Fire" class="product-image">
-                <h3 class="product-title">VB mini Chess - Fire</h3>
-                <div class="product-rating">★★★★★ 145 reviews</div>
-                <div class="product-price">
-                    G$9,400.00 
-                    <span class="old-price">G$12,600.00</span>
+        <footer class="email-footer">
+            <div class="email-signup-section">
+                <h2>Join our email list</h2>
+                <p>Get exclusive deals and early access to new products.</p>
+                <form class="email-form">
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit">→</button>
+                </form>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <p>© 2025 VentureBoard</p>
+                    <a href="#">Terms and Policies</a>
+                    <a href="#">US Patent No. 12,303,796</a>
+                </div>
+                <div class="footer-right">
+                    <a href="https://facebook.com/ventureboardchess" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/VentureBoard1" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter">𝕏</a>
+                    <a href="https://instagram.com/venture.board/#" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://youtube.com/@VentureBoardGames" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
             </div>
-
-            <div class="product-card">
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/L02.jpg?v=1713120671&width=352" alt="VB mini Chess - Skye" class="product-image">
-                <h3 class="product-title">VB mini Chess - Skye</h3>
-                <div class="product-rating">★★★★★ 32 reviews</div>
-                <div class="product-price">G$12,600.00</div>
-            </div>
-
-            <div class="product-card">
-                <span class="sale-badge">Sale</span>
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing02_2.jpg?v=1713314261&width=352" alt="VB XL Chess" class="product-image">
-                <h3 class="product-title">VB XL Chess</h3>
-                <div class="product-rating">★★★★★ 79 reviews</div>
-                <div class="product-price">
-                    G$12,600.00 
-                    <span class="old-price">G$16,900.00</span>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <span class="new-badge">New</span>
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing01_1.jpg?v=1750445514&width=352" alt="VB Go 9x9" class="product-image">
-                <h3 class="product-title">VB Go 9x9</h3>
-                <div class="product-rating">★★★★★ 4 reviews</div>
-                <div class="product-price">G$9,400.00</div>
-            </div>
-
-            <div class="product-card">
-                <span class="sale-badge">Sale</span>
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/Listing01.heic?v=1739581695&width=352" alt="VB Backgammon" class="product-image">
-                <h3 class="product-title">VB Backgammon</h3>
-                <div class="product-rating">★★★★★ 13 reviews</div>
-                <div class="product-price">
-                    G$9,400.00 
-                    <span class="old-price">G$12,600.00</span>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/71d1Hbs_FhL._AC_SL1500.jpg?v=1715739553&width=352" alt="Checkers Mini" class="product-image">
-                <h3 class="product-title">Xpansion Set - Checkers Pieces for VB mini</h3>
-                <div class="product-rating">★★★★★ 1 reviews</div>
-                <div class="product-price">G$2,600.00</div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/51OOFaQQA9L._AC_SL1180.jpg?v=1739149460&width=832" alt="Checkers XL" class="product-image">
-                <h3 class="product-title">Xpansion Set - Checkers Pieces for VB XL</h3>
-                <div class="product-rating">★★★★★ 1 reviews</div>
-                <div class="product-price">G$2,200.00</div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://www.ventureboardgames.com/cdn/shop/files/FullSizeRender_5cabb3c5-3601-4f0e-97b1-68eede4a5c8b.jpg?v=1729679124&width=832" alt="Chess Pieces XL" class="product-image">
-                <h3 class="product-title">Xtra Set - VB XL Chess Pieces</h3>
-                <div class="product-rating">★★★★★ 1 reviews</div>
-                <div class="product-price">G$5,100.00</div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://www.ventureboardgames.com/cdn/shop/products/IMG_4494.jpg?v=1673385920&width=832" alt="Chess Pieces Mini" class="product-image">
-                <h3 class="product-title">Xtra Set - VB mini Chess Pieces</h3>
-                <div class="product-rating">★★★★★ 1 reviews</div>
-                <div class="product-price">G$2,200.00</div>
-            </div>
-            </section>
-            <footer class="email-footer">
-        <div class="email-signup-section">
-            <h2>Join our email list</h2>
-            <p>Get exclusive deals and early access to new products.</p>
-            <form class="email-form">
-                <input type="email" placeholder="Email address" required>
-                <button type="submit">→</button>
-            </form>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-left">
-                <p>© 2025 VentureBoard</p>
-                <a href="#">Terms and Policies</a>
-                <a href="#">US Patent No. 12,303,796</a>
-            </div>
-            <div class="footer-right">
-                <a href="https://facebook.com/ventureboardchess" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://x.com/VentureBoard1" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter">𝕏</a>
-                <a href="https://instagram.com/venture.board/#" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linkedin.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://youtube.com/@VentureBoardGames" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
-
+        </footer>
+    </div>
 </body>
 </html>
