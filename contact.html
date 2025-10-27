@@ -378,7 +378,42 @@
         .mobile-currency-toggle {
             display: none;
         }
-
+        .brand-section {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 4rem;
+          padding: 3rem 1rem;
+          background-color: #fff;
+        }
+        
+        .brand-item {
+          text-align: center;
+        }
+        
+        .brand-caption {
+          font-size: 1rem;
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+        
+        .brand-item img {
+          max-width: 220px;
+          height: auto;
+          transition: transform 0.3s ease;
+        }
+        
+        .brand-item img:hover {
+          transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+          .brand-section {
+            flex-direction: column;
+            gap: 2rem;
+          }
+        }
         @media (max-width: 780px) {
             header {
                 padding: 15px 20px;
@@ -700,7 +735,21 @@
             <button type="submit" class="submit-btn">SUBMIT</button>
         </form>
     </main>
+    <section class="brand-section">
+     <div class="brand-item">
+       <p class="brand-caption">Funded on</p>
+       <img src="https://www.ventureboardgames.com/cdn/shop/files/kickstarter-logo-green.png?v=1761439759&width=1920" alt="Kickstarter Logo">
+     </div>
 
+     <div class="brand-item">
+       <p class="brand-caption">As seen on</p>
+       <img src="https://www.ventureboardgames.com/cdn/shop/files/gearjunkie.png?v=1761440758&width=1920" alt="GearJunkie Logo">
+     </div>
+
+     <div class="brand-item">
+        <img src="https://www.ventureboardgames.com/cdn/shop/files/fulfillment-by-amazon-logo.png?v=1761443419&width=1920" alt="Fulfillment by Amazon Logo">
+      </div>
+    </section>
     <footer class="email-footer">
         <div class="email-signup-section">
             <h2>Join our email list</h2>
